@@ -47,7 +47,7 @@ def Scan():
 				os.remove(os.path.join(raiz,arquivo))#O ARQUIVO EH APAGADO
 
 	for ran in range(pro):#for 'ran' EM 'range' ATE 'pro'
-	    numero = int(random.randrange(1,100))#'numero' RECEBE UM NUMERO RANDOMICO DE 1 A 100
+	    numero = int(random.randrange(1,101))#'numero' RECEBE UM NUMERO RANDOMICO DE 1 A 100
 	    for chave, valor in enumerate(numeros):#FOR PARA ENUMERAR, CRIA 'char' E 'valor'
 	        if numero < valor:#SE 'numero' FOR MENOR QUE 'valor' 
 	            numeros.insert(chave, numero)#'numeros' EH INSERIDO em 'chave' E 'numero'  
