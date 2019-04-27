@@ -27,7 +27,7 @@ Main.title("Sistemas Operacionais - SJF")#TITULO DA JANELA
 
 #############TRATAMENTO
 #VERIFICA SE EXISTE O ARQUIVO NO CAMINHO, SE EXISTIR ELE EH APAGADO
-for raiz, diretorio, arquivos in os.walk('/home/karan/Documentos/operacionais'):
+for raiz, diretorio, arquivos in os.walk('LOCAL EM QUE ESTA LOCALIZADO SEU ARQUIVO SJF.txt BAIXADO'):
 		for arquivo in arquivos:#FOR ARQUIVO EM ARQUIVOS
 			if arquivo.endswith('SJF.txt'):#SE ENCONTRAR O ARQUIVO
 				os.remove(os.path.join(raiz,arquivo))#O ARQUIVO EH APAGADO
@@ -41,7 +41,7 @@ def Scan():
 	pro = int(ETY_PRO.get())#PEGA A INFORMACAO DA LABEL
 
 	#VERIFICA SE EXISTE O ARQUIVO NO CAMINHO, SE EXISTIR ELE EH APAGADO
-	for raiz, diretorio, arquivos in os.walk('/home/karan/Documentos/operacionais'):
+	for raiz, diretorio, arquivos in os.walk('LOCAL EM QUE ESTA LOCALIZADO SEU ARQUIVO SJF.txt BAIXADO'):
 		for arquivo in arquivos:#FOR ARQUIVO EM ARQUIVOS
 			if arquivo.endswith('SJF.txt'):#SE ENCONTRAR O ARQUIVO
 				os.remove(os.path.join(raiz,arquivo))#O ARQUIVO EH APAGADO
@@ -58,7 +58,7 @@ def Scan():
 		for item in numeros:#FOR DE 'item' EM 'numeros'
 			contador = contador + 1#CONTADOR, 'contador' RECEBE ELE MESMO +1
 			#GERA UM ARQUIVO E SALVA 
-			arquivo = open('/home/karan/Documentos/operacionais/SJF.txt', 'a')#ABRE O ARQUIVO 'SJF.txt' COM PERMISSAO DE LEITARA E ESCRITA
+			arquivo = open('SJF.txt', 'a')#ABRE O ARQUIVO 'SJF.txt' COM PERMISSAO DE LEITARA E ESCRITA
 			arquivo.write("P%s --------------------> %s\n" %(contador,item))#ESCREVE TUDO O QUE ESTA EM 'contador' E 'item'
 			arquivo.close()#FECHA O ARQUIVO
 
