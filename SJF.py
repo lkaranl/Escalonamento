@@ -34,7 +34,7 @@ for raiz, diretorio, arquivos in os.walk('LOCAL EM QUE ESTA LOCALIZADO SEU ARQUI
 
 
 #############FUNCOES 
-#CUNAO 'Scan'
+#FUNCAO 'Scan'
 def Scan():
 	contador = 0#CRIA UM CONTADOR
 	numeros = []#CRIA UMA ARRAY
