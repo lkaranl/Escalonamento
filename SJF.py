@@ -1,9 +1,9 @@
 # encoding: utf-8
 
 #####	NAME:				ALGORITMO DE ESCALONAMENTO SHORTEST JOB FIRST (SJF)
-#####	VERSION:			1.0
+#####	VERSION:			1.6
 #####	DESCRIPTION:			O ALGORITMO APRESENTA A ORDEM DA EXECUCAO DOS PROCESSOS, CONFORME ESTRATEGIA DE ESCALONAMENTO
-#####	DATE OF CREATION:		27/04/2019
+#####	DATE OF CREATION:		20/04/2019
 #####	WRITTEN BY:			KARAN LUCIANO SILVA | JACKSON DURAES
 #####	E-MAIL:				karanluciano1@gmail.com			
 #####	DISTRO:				MANJARO LINUX
@@ -32,7 +32,6 @@
 import random#BIBIOTECA PARA GERAR NUMEROS ALEATORIOS
 import os#BIBLIOTECA PARA USAR OPERACOES DO SISTEMA
 from Tkinter import *#BIBLIOTECA DO TKINTER
-import commands
 
 #############FUNTES
 FONT1 = ['Ubuntu',12,'bold']#FONTE
@@ -42,7 +41,7 @@ FONT3 = ['Verdana',6,'bold']#FONTE
 #############JANELA INICIAL
 Main = Tk()#CRIA A INSTANCIA DE TK (JANELA)
 Main['bg'] = 'white'#DA A COR
-Main.geometry("400x673")#TAMANHO
+Main.geometry("400x773")#TAMANHO
 Main.title("Sistemas Operacionais - SJF")#TITULO DA JANELA
 				
 #############FUNCOES 
@@ -54,21 +53,7 @@ def Scan():
 	numeros = []#CRIA UMA ARRAY
 	pro = int(ETY_PRO.get())#PEGA A INFORMACAO DA LABEL
 
-	#VERIFICA SE EXISTE O ARQUIVO NO CAMINHO, SE EXISTIR ELE EH APAGADO
-	for raiz, diretorio, arquivos in os.walk('/home/karan/Documentos/operacionais'):
-		for arquivo in arquivos:#FOR ARQUIVO EM ARQUIVOS
-			if arquivo.endswith('SJF.txt'):#SE ENCONTRAR O ARQUIVO
-				os.remove(os.path.join(raiz,arquivo))#O ARQUIVO EH APAGADO
-
-	for raiz, diretorio, arquivos in os.walk('/home/karan/Documentos/operacionais'):
-		for arquivo in arquivos:#FOR ARQUIVO EM ARQUIVOS
-			if arquivo.endswith('turn.txt'):#SE ENCONTRAR O ARQUIVO
-				os.remove(os.path.join(raiz,arquivo))#O ARQUIVO EH APAGADO
-
-	for raiz, diretorio, arquivos in os.walk('/home/karan/Documentos/operacionais'):
-		for arquivo in arquivos:#FOR ARQUIVO EM ARQUIVOS
-			if arquivo.endswith('turnn.txt'):#SE ENCONTRAR O ARQUIVO
-				os.remove(os.path.join(raiz,arquivo))#O ARQUIVO EH APAGADO									
+	os.system("rm SJF.txt && rm turn.txt && rm turnn.txt && rm medWait.txt && rm medTurn.txt")					
 
 	for ran in range(pro):#for 'ran' EM 'range' ATE 'pro'
 	    numero = int(random.randrange(1,101))#'numero' RECEBE UM NUMERO RANDOMICO DE 1 A 100
@@ -81,18 +66,20 @@ def Scan():
 	
 	arquivo = open('turn.txt', 'a')#ABRE O ARQUIVO 'SJF.txt' COM PERMISSAO DE LEITARA E ESCRITA
 	arquivo.write('0\n')#ESCREVE TUDO O QUE ESTA EM 'contador' E 'item'
-	arquivo.close()#FECHA O ARQUIVO        
+	arquivo.close()#FECHA O ARQUIVO    
+
+	   
 
 	while contador < pro:	#ENQUANTO 'contador' FOR MENOR QUE 'pro'
 		for item in numeros:#FOR DE 'item' EM 'numeros'
 			contador = contador + 1#CONTADOR, 'contador' RECEBE ELE MESMO +1
 			#GERA UM ARQUIVO E SALVA 
 			arquivo = open('SJF.txt', 'a')#ABRE O ARQUIVO 'SJF.txt' COM PERMISSAO DE LEITARA E ESCRITA
-			arquivo.write("        P%s                    %s           \n" %(contador,item))#ESCREVE TUDO O QUE ESTA EM 'contador' E 'item'
+			arquivo.write("       P%s                   %s           \n" %(contador,item))#ESCREVE TUDO O QUE ESTA EM 'contador' E 'item'
 			arquivo.close()#FECHA O ARQUIVO
 			arquivo = open('SJF.txt', 'r')#ABRE O ARQUIVO 'STF.txt' COM PERMISSAO DE LEITURA
 			leitura = arquivo.read()#LE TUDO QUE ESTA NO ARQUIVO
-			LBL_Leitura['text'] = leitura#TROCA A CHAVE 'text' DO LABEL 'LBL_Leitura'
+			LBL_LeituraPro['text'] = leitura#TROCA A CHAVE 'text' DO LABEL 'LBL_Leitura'
 			arquivo.close()#FECHA O ARQUIVO
 
 			itemm = itemm+item
@@ -106,20 +93,30 @@ def Scan():
 
 			arquivo = open('tturn.txt', 'r')#ABRE O ARQUIVO 'STF.txt' COM PERMISSAO DE LEITURA
 			leitura = arquivo.read()#LE TUDO QUE ESTA NO ARQUIVO
-			LBL_Leituraa['text'] = leitura#TROCA A CHAVE 'text' DO LABEL 'LBL_Leitura'
+			LBL_LeituraWait['text'] = leitura#TROCA A CHAVE 'text' DO LABEL 'LBL_Leitura'
 			arquivo.close()#FECHA O ARQUIVO
 	
-			
-
 			arquivo = open('turnn.txt', 'a')#ABRE O ARQUIVO 'SJF.txt' COM PERMISSAO DE LEITARA E ESCRITA
 			arquivo.write("%s\n" %itemm)#ESCREVE TUDO O QUE ESTA EM 'contador' E 'item'
 			arquivo.close()#FECHA O ARQUIVO
 			arquivo = open('turnn.txt', 'r')#ABRE O ARQUIVO 'STF.txt' COM PERMISSAO DE LEITURA
 			leitura = arquivo.read()#LE TUDO QUE ESTA NO ARQUIVO
-			LBL_Leituraaa['text'] = leitura#TROCA A CHAVE 'text' DO LABEL 'LBL_Leitura'
+			LBL_LeituraTurn['text'] = leitura#TROCA A CHAVE 'text' DO LABEL 'LBL_Leitura'
 			arquivo.close()#FECHA O ARQUIVO
 
+		os.system("./waiting.sh >> medWait.txt") 
+		os.system("./turnaround.sh >> medTurn.txt") 
+
+		arquivo = open('medWait.txt', 'r')#ABRE O ARQUIVO 'STF.txt' COM PERMISSAO DE LEITURA
+		leitura = arquivo.read()#LE TUDO QUE ESTA NO ARQUIVO
+		LBL_LeituraAveWait['text'] = leitura#TROCA A CHAVE 'text' DO LABEL 'LBL_Leitura'
+		arquivo.close()#FECHA O ARQUIVO
 		
+		arquivo = open('medTurn.txt', 'r')#ABRE O ARQUIVO 'STF.txt' COM PERMISSAO DE LEITURA
+		leitura = arquivo.read()#LE TUDO QUE ESTA NO ARQUIVO
+		LBL_LeituraAveTurn['text'] = leitura#TROCA A CHAVE 'text' DO LABEL 'LBL_Leitura'
+		arquivo.close()#FECHA O ARQUIVO
+	
 #############LABELS	
 #NUMERO DE PROCESSOS
 LBL_PRO = Label(Main,text = 'Numero de Processos:')#NOME
@@ -129,7 +126,7 @@ LBL_PRO['font'] = FONT2#FONTE
 
 #ENTRADA DE DADOS
 ETY_PRO = Entry(Main,width = 12)#ENTRADA
-ETY_PRO.insert(END,'1')#TEXTO DETRO
+ETY_PRO.insert(END,'1-34')#TEXTO DETRO
 ETY_PRO['font'] = FONT2#FONTE
 ETY_PRO.place(x = 180,y = 10)#LOCAL X,Y
 
@@ -138,24 +135,31 @@ LBL_SJF = Label(Main,text = 'Escalonamento SJF',font = FONT1,bg = 'white',fg = '
 
 #LINHA DE DIVISAO
 LBL_Linha = Label(Main,width = 90,bg = 'red').place(x = 0, y = 125,height = 0)#LINHA COM LOCAL X,Y
+LBL_Linhaa = Label(Main,width = 600,bg = 'blue').place(x = 0, y = 700,height = 0)#LINHA COM LOCAL X,Y
 
 #KARAN LUCIANO | JACKSON DURAES
 LBL_Developers = Label(Main,text = 'Karan Luciano | Jackson Duraes',bg = 'white', fg = 'red',font = ("Verdana",6,"bold"))#NOMES
 LBL_Developers.place(x = 240, y = 115)#LOCAL X,Y
 
 #PROCESSOS | CPUBUSTER
-LBL_Open = Label(Main,text = ' Processo  |  Buster  |  Waiting  |  Turnaround',font = FONT1,bg = 'white')#NOME
+LBL_Open = Label(Main,text = ' Process  |  Buster  |  Waiting  |  Turnaround',font = FONT1,bg = 'white')#NOME
 LBL_Open.place(x = 10, y = 140)#LOCAL X,Y
 
 #ESPACO EM BRANCO DE LEITURA
-LBL_Leitura = Label(Main, text='', bg='white')#ESPACO EM BRANCO
-LBL_Leitura.place(x=5, y=165)#LOCAL X,Y
+LBL_LeituraPro = Label(Main, text='', bg='white')#ESPACO EM BRANCO
+LBL_LeituraPro.place(x=5, y=165)#LOCAL X,Y
 
-LBL_Leituraa = Label(Main, text='', bg='white')#ESPACO EM BRANCO
-LBL_Leituraa.place(x=218, y=165)#LOCAL X,Y
+LBL_LeituraWait = Label(Main, text='', bg='white')#ESPACO EM BRANCO
+LBL_LeituraWait.place(x=214, y=165)#LOCAL X,Y
 
-LBL_Leituraaa = Label(Main, text='', bg='white')#ESPACO EM BRANCO
-LBL_Leituraaa.place(x=320, y=165)#LOCAL X,Y
+LBL_LeituraTurn = Label(Main, text='', bg='white')#ESPACO EM BRANCO
+LBL_LeituraTurn.place(x=317, y=165)#LOCAL X,Y
+
+LBL_LeituraAveWait = Label(Main, text='', bg='white',font = FONT2)#ESPACO EM BRANCO
+LBL_LeituraAveWait.place(x=190, y=715)#LOCAL X,Y
+
+LBL_LeituraAveTurn = Label(Main, text='', bg='white',font = FONT2)#ESPACO EM BRANCO
+LBL_LeituraAveTurn.place(x=190, y=733)#LOCAL X,Y
 
 #############BOTOES
 #BOTAO 'Gerar'
@@ -164,4 +168,4 @@ BTO_Scan['command'] = Scan#,SJF#ATRABUI O COMANDO BOTAO, CHAMANDO A FUNCAO 'Scan
 BTO_Scan['font'] = FONT1#TIPO DE FONTE
 BTO_Scan.place(x = 298, y = 10)#LOCAL X,Y
 
-Main.mainloop()#CHAMA Tk
+Main.mainloop()#CHAMA Tk::
