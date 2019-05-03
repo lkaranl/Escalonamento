@@ -1,32 +1,32 @@
 # encoding: utf-8
 
 #####	NAME:				ALGORITMO DE ESCALONAMENTO SHORTEST JOB FIRST (SJF)
-#####	VERSION:			1.6
+#####	VERSION:			0.3
 #####	DESCRIPTION:			O ALGORITMO APRESENTA A ORDEM DA EXECUCAO DOS PROCESSOS, CONFORME ESTRATEGIA DE ESCALONAMENTO
-#####	DATE OF CREATION:		20/04/2019
+#####	DATE OF CREATION:		26/04/2019
 #####	WRITTEN BY:			KARAN LUCIANO SILVA | JACKSON DURAES
 #####	E-MAIL:				karanluciano1@gmail.com			
 #####	DISTRO:				MANJARO LINUX
 #####	LICENSE:			GPLv3 			
-#####	PROJECT:			https://github.com/lkaranl/Vector_Clock
+#####	PROJECT:			https://github.com/lkaranl/escalonamento
 
-#█████████████████████████████████████
-#████ ▄▄▄▄▄ █ ▀▀▄ ▀ ██ ██▀█ ▄▄▄▄▄ ████
-#████ █   █ ███ ▄▄ ▀ █  ▄▄█ █   █ ████
-#████ █▄▄▄█ █ ▄▄ █ ▄█▀▄▄█▀█ █▄▄▄█ ████
-#████▄▄▄▄▄▄▄█ █ ▀ █ ▀▄█ ▀▄█▄▄▄▄▄▄▄████
-#████   █▀▄▄▀▄  ██▀█▄ ▀█▀    ▄██  ████
-#██████▀█▄▀▄▄ ▀█▄██  ▀██▄ ▀▄▄  ▄█▄████
-#████▄█▄ ▀▀▄▀▀ █▄  ▄█▀▀█▀ █  ███▀ ████
-#████ ▄▄█▄▀▄█ ▄▄▀ █▄ ▄▄█ ▀▄  ▄███▄████
-#████▄▄██▄ ▄▀  ▄██ ▄ ▀▀▄▀▄▄ ▀██▀▀ ████
-#████▄▄█▄▀▄▄▀ ▄ ▄█▀█ ▀█▀▄▀█▀█ ▄██▄████
-#████▄▄▄█▄▄▄█▀▀█▄ ▄█▀ ▄▀█ ▄▄▄  ▀▄▀████
-#████ ▄▄▄▄▄ █▀▀▀▀ ▄ ▄ ██▀ █▄█ ███▄████
-#████ █   █ ██ ▀██   ▀██   ▄▄  ▀▄▀████
-#████ █▄▄▄█ █ ▄█▄█▀█ █▄▀█▀▄█▀ ▀█▄▄████
-#████▄▄▄▄▄▄▄█▄██▄▄▄█▄▄███▄███▄▄██▄████
-#█████████████████████████████████████
+# █████████████████████████████████████
+# ████ ▄▄▄▄▄ █ ▄▄ █▄ █▀ ██▀█ ▄▄▄▄▄ ████
+# ████ █   █ ██▄█▀▀ ▀ █  ▄▄█ █   █ ████
+# ████ █▄▄▄█ █ ▀▀▄ ▀ █▀▄▄█▀█ █▄▄▄█ ████
+# ████▄▄▄▄▄▄▄█ ▀▄█▄█▄█▄█ ▀▄█▄▄▄▄▄▄▄████
+# ████ ▄▄▀█▄▄▀▄▄█▄ █▀  ▀█▀    ▄██  ████
+# ████▀ ▄  ▀▄▀ ▄ ▀ ▄█  ██▄ ▀▄▄  ▄█▄████
+# █████▀█▀▄█▄ ▀▄ ██▀█▀ ▀█▀ █  ███▀ ████
+# █████ █▄█▀▄█ ▀ ▄██▀ ▀▄█ ▀▄  ▄███▄████
+# █████▀▄ ▀█▄▀█▀▀▄  ▄▀ ▀▄▀▄▄ ▀██▀▀ ████
+# ████▄▄█▀▀▄▄██  ▀ █▄▄ █▀▄▀█▀█ ▄██▄████
+# ████▄▄▄█▄▄▄█ ████ ▄▀ ███ ▄▄▄  ▀▄▀████
+# ████ ▄▄▄▄▄ █▀▄ ▄█▀█▄█▄▀▀ █▄█ ██▀▄████
+# ████ █   █ ██ ▀▄ ▄█  █▀   ▄▄  ▀▄▀████
+# ████ █▄▄▄█ █ █▀▀ ▄  ██ █▀▄█▀ ▀█▄▄████
+# ████▄▄▄▄▄▄▄█▄████▄▄▄▄███▄███▄▄██▄████
+# █████████████████████████████████████
 
 #############BIBLIOTECAS
 import random#BIBIOTECA PARA GERAR NUMEROS ALEATORIOS
@@ -53,8 +53,8 @@ def Scan():
 	numeros = []#CRIA UMA ARRAY
 	pro = int(ETY_PRO.get())#PEGA A INFORMACAO DA LABEL
 
-	os.system("rm SJF.txt && rm turn.txt && rm turnn.txt && rm medWait.txt && rm medTurn.txt")					
-	os.system("chmod +x waiting.sh && chmod +x turnaround.sh 2>/dev/null")
+	os.system("rm SJF.txt && rm turn.txt && rm turnaround.txt  && rm medWait.txt && rm medTurn.txt && rm buster.txt")#APAGA OS ARQUIVOS PARA NAO ACUMULAR 					
+	os.system("chmod +x waiting.sh && chmod +x turnaround.sh 2>/dev/null")#DA PERMISSAO DE EXECUCAO AS SCRIPTS
 	
 	for ran in range(pro):#for 'ran' EM 'range' ATE 'pro'
 	    numero = int(random.randrange(1,101))#'numero' RECEBE UM NUMERO RANDOMICO DE 1 A 100
@@ -69,12 +69,8 @@ def Scan():
 	arquivo.write('0\n')#ESCREVE TUDO O QUE ESTA EM 'contador' E 'item'
 	arquivo.close()#FECHA O ARQUIVO    
 
-	   
-
 	while contador < pro:	#ENQUANTO 'contador' FOR MENOR QUE 'pro'
 		for item in numeros:#FOR DE 'item' EM 'numeros'
-			contador = contador + 1#CONTADOR, 'contador' RECEBE ELE MESMO +1
-			#GERA UM ARQUIVO E SALVA 
 			arquivo = open('SJF.txt', 'a')#ABRE O ARQUIVO 'SJF.txt' COM PERMISSAO DE LEITARA E ESCRITA
 			arquivo.write("       P%s                   %s           \n" %(contador,item))#ESCREVE TUDO O QUE ESTA EM 'contador' E 'item'
 			arquivo.close()#FECHA O ARQUIVO
@@ -82,31 +78,33 @@ def Scan():
 			leitura = arquivo.read()#LE TUDO QUE ESTA NO ARQUIVO
 			LBL_LeituraPro['text'] = leitura#TROCA A CHAVE 'text' DO LABEL 'LBL_Leitura'
 			arquivo.close()#FECHA O ARQUIVO
-
-			itemm = itemm+item
+			contador = contador + 1#CONTADOR, 'contador' RECEBE ELE MESMO +1
+			itemm = itemm+item#FAZ A SOMA DOS VALORES
 
 			arquivo = open('turn.txt', 'a')#ABRE O ARQUIVO 'SJF.txt' COM PERMISSAO DE LEITARA E ESCRITA
 			arquivo.write("%s\n" %itemm)#ESCREVE TUDO O QUE ESTA EM 'contador' E 'item'
 			arquivo.close()#FECHA O ARQUIVO
 
-			os.system("rm tturn.txt 2>/dev/null")
-			os.system("cat turn.txt | head -n -1 >> tturn.txt")
+			os.system("rm waiting.txt 2>/dev/null")#APAGA O ARQUIVO 'waiting.txt'
+			os.system("cat turn.txt | head -n -1 >> waiting.txt")#LE O ARQUIVO GERADO E FAZ O TRATAMENTO
+			
 
-			arquivo = open('tturn.txt', 'r')#ABRE O ARQUIVO 'STF.txt' COM PERMISSAO DE LEITURA
+			arquivo = open('waiting.txt', 'r')#ABRE O ARQUIVO 'STF.txt' COM PERMISSAO DE LEITURA
 			leitura = arquivo.read()#LE TUDO QUE ESTA NO ARQUIVO
 			LBL_LeituraWait['text'] = leitura#TROCA A CHAVE 'text' DO LABEL 'LBL_Leitura'
 			arquivo.close()#FECHA O ARQUIVO
 	
-			arquivo = open('turnn.txt', 'a')#ABRE O ARQUIVO 'SJF.txt' COM PERMISSAO DE LEITARA E ESCRITA
+			arquivo = open('turnaround.txt', 'a')#ABRE O ARQUIVO 'SJF.txt' COM PERMISSAO DE LEITARA E ESCRITA
 			arquivo.write("%s\n" %itemm)#ESCREVE TUDO O QUE ESTA EM 'contador' E 'item'
 			arquivo.close()#FECHA O ARQUIVO
-			arquivo = open('turnn.txt', 'r')#ABRE O ARQUIVO 'STF.txt' COM PERMISSAO DE LEITURA
+			arquivo = open('turnaround.txt', 'r')#ABRE O ARQUIVO 'STF.txt' COM PERMISSAO DE LEITURA
 			leitura = arquivo.read()#LE TUDO QUE ESTA NO ARQUIVO
 			LBL_LeituraTurn['text'] = leitura#TROCA A CHAVE 'text' DO LABEL 'LBL_Leitura'
 			arquivo.close()#FECHA O ARQUIVO
 
-		os.system("./waiting.sh >> medWait.txt") 
-		os.system("./turnaround.sh >> medTurn.txt") 
+		os.system("cat SJF.txt | sed 's/^.\{28\}//' >> buster.txt")
+		os.system("./waiting.sh >> medWait.txt") #CHAMA O SCRIPT QUE FAZ O CALCULO DO TEMPO MEDIO DE ESPERA
+		os.system("./turnaround.sh >> medTurn.txt")#CHAMA O SCRIPT QUE FAZ O CALCULO DO TEMPO MEDIO DE TOURNAROUND	
 
 		arquivo = open('medWait.txt', 'r')#ABRE O ARQUIVO 'STF.txt' COM PERMISSAO DE LEITURA
 		leitura = arquivo.read()#LE TUDO QUE ESTA NO ARQUIVO
@@ -117,6 +115,8 @@ def Scan():
 		leitura = arquivo.read()#LE TUDO QUE ESTA NO ARQUIVO
 		LBL_LeituraAveTurn['text'] = leitura#TROCA A CHAVE 'text' DO LABEL 'LBL_Leitura'
 		arquivo.close()#FECHA O ARQUIVO
+
+		os.system("./gra.sh")
 	
 #############LABELS	
 #NUMERO DE PROCESSOS
@@ -146,7 +146,7 @@ LBL_Developers.place(x = 240, y = 115)#LOCAL X,Y
 LBL_Open = Label(Main,text = ' Process  |  Buster  |  Waiting  |  Turnaround',font = FONT1,bg = 'white')#NOME
 LBL_Open.place(x = 10, y = 140)#LOCAL X,Y
 
-#ESPACO EM BRANCO DE LEITURA
+#LABEL EM BRANCO DE LEITURA
 LBL_LeituraPro = Label(Main, text='', bg='white')#ESPACO EM BRANCO
 LBL_LeituraPro.place(x=5, y=165)#LOCAL X,Y
 
@@ -169,4 +169,4 @@ BTO_Scan['command'] = Scan#,SJF#ATRABUI O COMANDO BOTAO, CHAMANDO A FUNCAO 'Scan
 BTO_Scan['font'] = FONT1#TIPO DE FONTE
 BTO_Scan.place(x = 298, y = 10)#LOCAL X,Y
 
-Main.mainloop()#CHAMA Tk::
+Main.mainloop()#CHAMA Tk
