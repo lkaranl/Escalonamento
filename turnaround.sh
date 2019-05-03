@@ -1,6 +1,6 @@
 #!/bin/bash
   
-DADOS=/home/karan/Documentos/Operacionais/turnaround.txt
+DADOS=turnaround.txt
 N=$(wc -l $DADOS | cut -d " " -f 1)
 SOMA=$(paste -sd+ $DADOS | bc)
 MEDIA=$(echo "scale=1; $SOMA/$N" | bc)
