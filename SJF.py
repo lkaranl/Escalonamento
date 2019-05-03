@@ -54,7 +54,7 @@ def Scan():
 	pro = int(ETY_PRO.get())#PEGA A INFORMACAO DA LABEL
 
 	os.system("rm SJF.txt && rm turn.txt && rm turnaround.txt  && rm medWait.txt && rm medTurn.txt && rm buster.txt")#APAGA OS ARQUIVOS PARA NAO ACUMULAR 					
-	os.system("chmod +x waiting.sh && chmod +x turnaround.sh 2>/dev/null")#DA PERMISSAO DE EXECUCAO AS SCRIPTS
+	os.system("chmod +x waiting.sh && chmod +x turnaround.sh && chmod +x gra.sh 2>/dev/null")#DA PERMISSAO DE EXECUCAO AS SCRIPTS
 	
 	for ran in range(pro):#for 'ran' EM 'range' ATE 'pro'
 	    numero = int(random.randrange(1,101))#'numero' RECEBE UM NUMERO RANDOMICO DE 1 A 100
