@@ -1,7 +1,7 @@
 #!/bin/bash
 
 gnuplot -persist <<-EOFMarker
-	set key above
+	set key left
 	set xlabel 'PROCESSO'
 	set ylabel 'TURNAROUND / WAITING / BUSTER'
 	set terminal wxt  enhanced title "Turnaround" persist raise
