@@ -31,7 +31,7 @@
 #############BIBLIOTECAS
 import random#BIBIOTECA PARA GERAR NUMEROS ALEATORIOS
 import os#BIBLIOTECA PARA USAR OPERACOES DO SISTEMA
-from Tkinter import *#BIBLIOTECA DO TKINTER
+from tkinter import *#BIBLIOTECA DO TKINTER
 
 #############FUNTES
 FONT1 = ['Ubuntu',12,'bold']#FONTE
