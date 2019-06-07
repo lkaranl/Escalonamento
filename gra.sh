@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 gnuplot -persist <<-EOFMarker
 	set key left

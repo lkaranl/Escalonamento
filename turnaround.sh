@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
   
 DADOS=turnaround.txt
 N=$(wc -l $DADOS | cut -d " " -f 1)

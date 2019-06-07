@@ -12,7 +12,14 @@ he code was written and tested on Linux systems, more specifically on Manjaro Li
 
 * All files must be in the same folder.;
 * Python3.7;
-* Tkinter Library.
+* Tkinter Library;
+* Gnuplot.
 
 # How to use it?
+
+Install the required libraries and programs listed above.
+
+To run the software use the command:<br/>
+`$python3 SJF.py`
+
 
